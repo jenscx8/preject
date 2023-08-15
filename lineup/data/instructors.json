@@ -1,0 +1,16 @@
+[
+    {
+        "firstName": "Albus",
+        "lastName": "Dumbledore",
+        "location": "Hogwarts",
+        "bio": "Wizard",
+        "certification": "3"
+    },
+    {
+        "firstName": "Ron",
+        "lastName": "Weasley",
+        "location": "Hogwarts",
+        "bio": "Wizard",
+        "certification": "2"
+    }
+]
