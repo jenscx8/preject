@@ -98,6 +98,7 @@ Certifications.init(
 )
 
 // istructor belogs to resort
+Resorts.hasMany(Instructor, { foreignKey: 'resortId' })
 Instructor.belongsTo(Resorts, { foreignKey: 'resortId' });
 // istructor has many certifications 
 Instructor.hasMany(Certifications, { foreignKey: 'certificationId' });

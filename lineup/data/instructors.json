@@ -1,16 +1,30 @@
 [
     {
-        "firstName": "Albus",
-        "lastName": "Dumbledore",
-        "location": "Hogwarts",
-        "bio": "Wizard",
-        "certification": "3"
+      "firstName": "John",
+      "lastName": "Doe",
+      "bio": "Experienced snowboard instructor",
+      "location": "Ski Apache",
+      "certification": "Level 2",
+      "email": "john@example.com",
+      "password": "password123"
     },
     {
-        "firstName": "Ron",
-        "lastName": "Weasley",
-        "location": "Hogwarts",
-        "bio": "Wizard",
-        "certification": "2"
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "bio": "Ski instructor with a passion for teaching",
+      "location": "Park City",
+      "certification": "Level 3",
+      "email": "jane@example.com",
+      "password": "password456"
+    },
+    {
+      "firstName": "Mike",
+      "lastName": "Johnson",
+      "bio": "Adaptive skiing specialist",
+      "location": "Angel Fire",
+      "certification": "Adaptive Level 1",
+      "email": "mike@example.com",
+      "password": "password789"
     }
-]
+  ]
+  

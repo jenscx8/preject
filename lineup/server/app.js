@@ -47,12 +47,37 @@ app.get('/api/instructors/:instructorId', async (req, res) => {
 
 // post create instructor
 app.post('/api/instructors/create', async (req, res) => {
-  const { firstName, lastName, bio, location, certification, email, password } = req.body
+  const {
+    firstName,
+    lastName,
+    bio,
+    location,
+    certification,
+    email,
+    password,
+  } = req.body;
 
-  const newInstructor = await Instructor.create({ firstName: firstName, lastName: lastName, bio: bio, location: location, certification: certification, email: email, password: password })
+  // Create instructor
+  const newInstructor = await Instructor.create({
+    firstName,
+    lastName,
+    bio,
+    certification,
+    email,
+    password,
+  });
 
-  res.json(newInstructor)
-})  
+  // Find or create resort based on location
+  const [resort, created] = await Resorts.findOrCreate({
+    where: { location },
+  });
+
+  // Associate instructor with resort
+  await newInstructor.setResort(resort);
+
+  res.json(newInstructor);
+});
+
 
 // post auth login
 app.post('/api/auth', async (req, res) => {

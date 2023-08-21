@@ -24,6 +24,8 @@ export default function YourProfilePage() {
       <h1>{firstName} {lastName}</h1>
       
       <p>{bio}</p><p>{location}</p><p>{certification}</p><p>{email}</p><p>{password}</p>
+
+      
     </>
   );
 }
