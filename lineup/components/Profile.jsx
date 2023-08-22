@@ -29,7 +29,5 @@ export default function Profile() {
 }
 
 
-// create an edit profile button
-// this will trigger a modal that has an input for bio location and certification 
-// upon submit this will trigger the edit route and save the new info to the database
-//
+// create a leave review button that will trigger a form
+// to leave a review 

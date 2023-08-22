@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import LogoutButton from './LogoutBtn';
 
 function BasicExample() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -36,3 +36,6 @@ function BasicExample() {
 }
 
 export default BasicExample;
+
+// turn this into a styled navabar with a dropdown for the resort list 
+// also add some conditional rendering if a user/instructor/admin is logged in

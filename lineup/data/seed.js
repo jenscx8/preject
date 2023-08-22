@@ -56,13 +56,65 @@ const seedDatabase = async () => {
       const [resort, created] = await Resorts.findOrCreate({
         where: { location },
       });
+      // find or create new user based on first name last name email password
+
+      // const [user, created] = await Users findOrCreate({
+      //   where: { firstName, lastName, email, password }
+      // })
 
       // Associate instructor with the resort
       await newInstructor.setResort(resort);
 
+      // associate user with instructor
+      // await newInstructor.setUser(user)
+
       return { instructor: newInstructor, resort };
     })
   );
+
+// // Create users and associate them with instructors
+// await Promise.all(
+//   instructorsAndResorts.map(async ({ instructor }) => {
+//     const newUser = await Users.create({
+//       // ... User-specific properties
+//       userName: `${instructor.firstName} ${instructor.lastName}`,
+//       email: 'user@example.com',
+//       password: 'password',
+//     });
+
+//     // Associate user with instructor
+//     await newUser.setInstructor(instructor);
+//   })
+// );
+
+
+
+    //  // Create reviews and associate them with users and instructors
+    //  await Promise.all(
+    //   instructorsAndResorts.map(async ({ instructor }) => {
+    //     const newReview = await Review.create({
+    //       text: 'A great experience!',
+    //     });
+
+    //     // Associate review with user and instructor
+    //     await newReview.setUser(instructor.user);
+    //     await newReview.setInstructor(instructor.instructor);
+    //   })
+    // );
+
+  // admin data
+  // const admins = await Promise.all(
+  //   adminData.map(async (admin) => {
+  //     const { userName, password } = admin
+
+  //     const newAdmin = await admin.create({ 
+  //       userName,
+  //       password
+  //      })
+
+  //      return {admin: newAdmin}
+  //   })
+  // )
 
   await db.close();
 

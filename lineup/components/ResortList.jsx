@@ -1,4 +1,6 @@
 // await resort data and render it in a list
+// fix typos 
+// figure out how to put this in a drop down
 import { Link, useLoaderData } from 'react-router-dom';
 
 export default function ResortLIst() {

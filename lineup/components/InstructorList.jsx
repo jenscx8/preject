@@ -18,3 +18,5 @@ export default function InstructorList() {
       </>
     );
   }
+
+  // might have to edit this to filter based off location but i dont thinik osoks alzdjc

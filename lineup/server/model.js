@@ -10,6 +10,63 @@ export class Instructor extends Model {
   }
 }
 
+// admin model
+
+export class Admins extends Model {
+    [util.inspect.custom]() {
+        return this.toJSON()
+    }
+}
+
+Admins.init(
+    {
+        adminId: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        userName: {
+            type: DataTypes.STRING
+        },
+        password: {
+            type: DataTypes.STRING
+        }
+    },
+    {
+        modelName: 'admin',
+        sequelize: db
+    }
+)
+
+// user model
+
+export class Users extends Model {
+    [util.inspect.custom]() {
+        return this.toJSON()
+    }
+}
+
+Users.init(
+    {
+        userId: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        userName: {
+            type: DataTypes.STRING
+        },
+        password: {
+            type: DataTypes.STRING
+        }
+
+    },
+    {
+        modelName: 'users',
+        sequelize: db
+    }
+)
+
 Instructor.init(
     {
         instructorId: {
@@ -97,8 +154,10 @@ Certifications.init(
     }
 )
 
+// review model
+
 // istructor belogs to resort
 Resorts.hasMany(Instructor, { foreignKey: 'resortId' })
 Instructor.belongsTo(Resorts, { foreignKey: 'resortId' });
 // istructor has many certifications 
-Instructor.hasMany(Certifications, { foreignKey: 'certificationId' });
+// Instructor.hasOne(Certifications, { foreignKey: 'certificationId' });

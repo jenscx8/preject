@@ -23,6 +23,15 @@ function loginRequired(req, res, next) {
   }
 }
 
+// admin function 
+// function adminRequired(req, res, next) {
+//   if(!req.session.adminId) {
+//     res.status(401).json({ error: 'Unauthorized' })
+//   } else {
+//     next();
+//   }
+// }
+
 // get resorts
 // get instructors
 app.get('/api/resorts', async (req, res) => {
@@ -37,6 +46,12 @@ app.get('/api/instructors', async (req, res) => {
     const instructorList = await Instructor.findAll();
     res.json(instructorList);
   });
+
+// get certifications
+
+// get users
+
+// get reviews
 
 // get instructor:id
 app.get('/api/instructors/:instructorId', async (req, res) => {
@@ -77,6 +92,21 @@ app.post('/api/instructors/create', async (req, res) => {
 
   res.json(newInstructor);
 });
+
+// admin login
+// app.post('/api/admin', async (req, res) => {
+//   const { email, password } = req.body
+//   const admin = await Admin.findOne({ where: {
+//     email: email 
+//   } })
+
+//   if (admin && admin.password === password) {
+//     req.session.adminId = admin.adminId;
+//     res.json({ success: true });
+//   } else {
+//     res.json({ success: false });
+//   }
+// })
 
 
 // post auth login
@@ -126,40 +156,52 @@ app.get('/api/instructors/:id/profile', async (req, res) => {
 
 // add login required
 // post edit profile
-app.put('/api/instructors/:id', async (req, res) => {
+app.post('/api/edit', loginRequired, async (req, res) => {
   
-  const { id } = req.session
+  const { instructorId } = req.session
   const { bio, location, certification } = req.body
 
   // const index = instructorData.findIndex((instructor) => instructor.instructorId === Number(instructorId));
   // const item = instructorData[index];
-  const item = await Instructor.findByPk(id)
-  console.log(item)
+  console.log(instructorId)
+  const instructor = await Instructor.findByPk(instructorId)
+  
 
 
   // Only update the values that are provided in req.body
-  item.bio = bio ?? item.bio;
-  item.location = location ?? item.location;
-  item.certification = certification ?? item.certification;
+  instructor.bio = bio ?? instructor.bio;
+  instructor.location = location ?? instructor.location;
+  instructor.certification = certification ?? instructor.certification;
 
-  await item.save()
-  res.json(item)
+  await instructor.save()
+  res.json(instructor)
 })
 
 
 
 // add login required
 // post delete profile
-app.put('/api/instructors/:id/delete', async (req, res) => {
-  const { id } = req.params
-  const instructor = await Instructor.findByPk(id)
-  if (Instructor.findByPk(id) === -1) {
-    res.status(404).json({error: `item with id ${id} not found`})
-  } else { 
-    (await Instructor.findAll()).slice(instructor, 1)
-    res.json({ id: Number(id) });
-  }
+app.post('/api/delete', async (req, res) => {
+  // const { id } = req.params
+  // const instructor = await Instructor.findByPk(id)
+  // if (Instructor.findByPk(id) === -1) {
+  //   res.status(404).json({error: `item with id ${id} not found`})
+  // } else { 
+  //   (await Instructor.findAll()).slice(instructor, 1)
+  //   res.json({ id: Number(id) });
+  // }
   
+
+  await Instructor.destroy({
+      where: {
+          instructorId: req.session.instructorId
+      }
+  })
+
+  res.json(`User ${req.session.firstName} has been deleted`)
+
+  req.session.destroy
+
 })
 
 ViteExpress.listen(app, port, () => console.log(`Server is listening on http://localhost:${port}`));

@@ -1,9 +1,10 @@
 // create a modal with a form in it that grabs all the data for a new instructor and submits it to the create route
 
 // import react bootstrap
-// import idk
+// import idk i need to turn this into a modal i can trigger
 
 import { useState } from 'react';
+
 
 export default function SignUpForm({ onSignup }) {
   const [emailValue, setEmailValue] = useState('');
