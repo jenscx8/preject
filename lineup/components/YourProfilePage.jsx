@@ -15,6 +15,7 @@ import axios from 'axios';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import EditForm from './EditForm';
 import DeleteBtn from './DeleteBtn'
+import Button from 'react-bootstrap/esm/Button';
 
 export default function YourProfilePage() {
   const {
@@ -46,6 +47,7 @@ export default function YourProfilePage() {
       <p>{bio}</p><p>{location}</p><p>{certification}</p><p>{email}</p><p>{password}</p>
 
       <EditForm onEdit={handleEdit} />
+      <br></br>
       <DeleteBtn onDelete={handleDelete} />
     </>
 

@@ -1,7 +1,7 @@
 // await instructor data and render it in a list
 import { Link, useLoaderData } from 'react-router-dom';
 
-
+// i think this is good the logic should trigger this to filter on the back end
 
 export default function InstructorList() {
     const { instructors } = useLoaderData()

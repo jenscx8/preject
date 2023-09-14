@@ -10,6 +10,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import BasicExample from '../components/NavBar';
 import LogoutButton from '../components/LogoutBtn';
 
+
 export default function Nav() {
 //   const navigate = useNavigate();
 
@@ -54,3 +55,5 @@ export default function Nav() {
     </>
   );
 }
+
+// this needs some padding and margin and stuff 

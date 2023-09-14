@@ -155,9 +155,36 @@ Certifications.init(
 )
 
 // review model
+export class Review extends Model {
+    [util.inspect.custom]() {
+        return this.toJSON();
+    }
+}
+
+Review.init(
+    {
+        reviewId: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        reviewMessage: {
+            type: DataTypes.TEXT
+        }
+        
+    },
+    {
+        modelName: 'reviews',
+        sequelize: db
+    }
+)
+
 
 // istructor belogs to resort
-Resorts.hasMany(Instructor, { foreignKey: 'resortId' })
+Resorts.hasMany(Instructor, { foreignKey: 'resortId' }, Certifications, { foreignKey: 'certificationId' })
 Instructor.belongsTo(Resorts, { foreignKey: 'resortId' });
 // istructor has many certifications 
-// Instructor.hasOne(Certifications, { foreignKey: 'certificationId' });
+Users.hasOne(Instructor, { foreignKey: 'userId' })
+// review belongs to instructor
+Review.belongsTo(Instructor, { foreignKey: 'reviewId' })
+Users.hasMany(Review, { foreignKey: 'userId' })

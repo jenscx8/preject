@@ -35,7 +35,7 @@
 // console.log(instructorData[0].firstName)
 
 
-import { Instructor, Resorts, Certifications, db } from "../server/model.js";
+import { Instructor, Resorts, Certifications, Users, Review, db } from "../server/model.js";
 import instructorData from './instructors.json' assert { type: 'json' }
 
 const seedDatabase = async () => {
@@ -72,37 +72,37 @@ const seedDatabase = async () => {
     })
   );
 
-// // Create users and associate them with instructors
-// await Promise.all(
-//   instructorsAndResorts.map(async ({ instructor }) => {
-//     const newUser = await Users.create({
-//       // ... User-specific properties
-//       userName: `${instructor.firstName} ${instructor.lastName}`,
-//       email: 'user@example.com',
-//       password: 'password',
-//     });
+// Create users and associate them with instructors
+await Promise.all(
+  instructorsAndResorts.map(async ({ instructor }) => {
+    const newUser = await Users.create({
+      // ... User-specific properties
+      userName: `${instructor.firstName} ${instructor.lastName}`,
+      email: 'user@example.com',
+      password: 'password',
+    });
 
-//     // Associate user with instructor
-//     await newUser.setInstructor(instructor);
-//   })
-// );
+    // Associate user with instructor
+    await newUser.setInstructor(instructor);
+  })
+);
 
 
 
     //  // Create reviews and associate them with users and instructors
-    //  await Promise.all(
-    //   instructorsAndResorts.map(async ({ instructor }) => {
-    //     const newReview = await Review.create({
-    //       text: 'A great experience!',
-    //     });
+     await Promise.all(
+      instructorsAndResorts.map(async ({ instructor }) => {
+        const newReview = await Review.create({
+          text: 'A great experience!',
+        });
 
-    //     // Associate review with user and instructor
-    //     await newReview.setUser(instructor.user);
-    //     await newReview.setInstructor(instructor.instructor);
-    //   })
-    // );
+        // Associate review with user and instructor
+        //await newReview.setUser(instructor.user);
+        await newReview.setInstructor(instructor.instructor);
+      })
+    );
 
-  // admin data
+  //admin data
   // const admins = await Promise.all(
   //   adminData.map(async (admin) => {
   //     const { userName, password } = admin
